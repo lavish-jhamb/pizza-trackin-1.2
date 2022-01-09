@@ -4,7 +4,6 @@ const app = express()
 const ejs = require('ejs')
 const path = require('path')
 const expressLayout = require('express-ejs-layouts')
-const PORT = process.env.PORT || 3000
 const mongoose = require('mongoose')
 const session = require('express-session')
 const flash = require('express-flash')
@@ -33,7 +32,7 @@ app.set('eventEmitter', eventEmitter)
 
 // Session config
 app.use(session({
-    secret: process.env.COOKIE_SECRET,
+    secret: "thisismysecret",
     resave: false,
     store: mongoStore,
     saveUninitialized: false,
@@ -67,6 +66,8 @@ require('./routes/web')(app)
 // app.use((req, res) => {
 //     res.status(404).render('errors/404')
 // })
+
+const PORT = process.env.PORT || 3000
 
 const server = app.listen(PORT , () => {
             console.log(`Listening on port ${PORT}`)
